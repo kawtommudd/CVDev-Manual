@@ -1,0 +1,47 @@
+site_name: CVDev
+site_description: คู่มือการใช้งานโปรแกรม CVDev
+site_author: CVDev Team
+
+theme:
+  name: material
+  favicon: cvdev.ico
+  logo: cvdev.ico
+  language: th
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.top
+    - content.code.copy
+    - content.action.edit
+  palette:
+    - scheme: default
+      primary: teal
+      accent: indigo
+    - scheme: default
+      primary: teal
+      accent: indigo
+
+markdown_extensions:
+    - admonition
+    - pymdownx.details
+    - pymdownx.superfences
+    - attr_list
+
+nav:
+  - หน้าแรก: index.md
+  - บทนำ: 02_introduction.md
+  - การติดตั้ง: 03_installation.md
+  - ภาพรวมส่วนติดต่อผู้ใช้: 04_Ui-Overview.md
+  - การสร้าง Workflow: 05_workflow.md
+  - โหนด: 06_nodes.md
+  - ตัวอย่าง: 07_examples.md
+  - เทคนิค: 08_troubleshooting.md
+
+plugins:
+  - search
+  #- with-pdf:
+      #cover: true  # สร้างหน้าปกให้ด้วย
+      #back_cover: true
+
+extra_css:
+  - stylesheets/extra.css
