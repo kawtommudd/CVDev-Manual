@@ -50,7 +50,7 @@
 ## การติดตั้งบนระบบ Linux (Ubuntu)
 
 ## 1. การเตรียมสภาพแวดล้อม (Prerequisites)
-    ก่อนเริ่มติดตั้ง ต้องติดตั้งเครื่องมือในการ Build และ Library พื้นฐานที่จำเป็นผ่าน Terminal:
+ก่อนเริ่มติดตั้ง ต้องติดตั้งเครื่องมือในการ Build และ Library พื้นฐานที่จำเป็นผ่าน Terminal:
 
     # อัปเดตรายการแพ็กเกจ
     sudo apt update && sudo apt upgrade -y
@@ -66,7 +66,7 @@
     sudo apt install -y libopencv-dev
 
 ## 2. การดาวน์โหลดซอร์สโค้ด (Clone Project)
-    ทำการดึงซอร์สโค้ดหลักและโปรเจกต์ย่อย (Submodules) ที่จำเป็นทั้งหมด:
+ทำการดึงซอร์สโค้ดหลักและโปรเจกต์ย่อย (Submodules) ที่จำเป็นทั้งหมด:
 
     # Clone โปรเจกต์จาก GitHub
     git clone https://github.com/pbunnun/SeeWeDev.git
@@ -79,7 +79,7 @@
     git submodule update --init --recursive
 
 ## 3. ขั้นตอนการบิ้วโปรแกรม (Build Process)
-    เนื่องจากโปรเจกต์ไม่อนุญาตให้ Build ในโฟลเดอร์ซอร์สโค้ดโดยตรง (In-source build disabled) จึงต้องสร้างโฟลเดอร์ build แยกต่างหาก:
+เนื่องจากโปรเจกต์ไม่อนุญาตให้ Build ในโฟลเดอร์ซอร์สโค้ดโดยตรง (In-source build disabled) จึงต้องสร้างโฟลเดอร์ build แยกต่างหาก:
 
     # สร้างและเข้าโฟลเดอร์สำหรับ Build
     mkdir build
@@ -92,16 +92,16 @@
     make -j4
 
 ## 4. การรันโปรแกรม (Execution)
-    เมื่อกระบวนการบิ้วเสร็จสิ้น 100% คุณจะพบไฟล์รันหลักอยู่ในโฟลเดอร์ย่อยภายใน build (โดยปกติจะอยู่ใน build/Main/ หรือตามโครงสร้างที่ CMake กำหนด):
+เมื่อกระบวนการบิ้วเสร็จสิ้น 100% คุณจะพบไฟล์รันหลักอยู่ในโฟลเดอร์ย่อยภายใน build (โดยปกติจะอยู่ใน build/Main/ หรือตามโครงสร้างที่ CMake กำหนด):
 
     # ตัวอย่างการรันโปรแกรม
     ./Main/CVDev
 
 ## 5. การสร้างแพ็กเกจติดตั้ง (Packaging - Option)
-    หากต้องการสร้างไฟล์ติดตั้ง .deb สำหรับนำไปใช้กับเครื่อง Ubuntu เครื่องอื่น สามารถใช้คำสั่ง CPack:
+หากต้องการสร้างไฟล์ติดตั้ง .deb สำหรับนำไปใช้กับเครื่อง Ubuntu เครื่องอื่น สามารถใช้คำสั่ง CPack:
 
     cpack -G DEB
 
 !!! Note 
-- Qt Version: โปรเจกต์นี้รองรับ Qt6 เป็นหลัก (ตามที่ระบุใน CPACK_DEBIAN_RUNTIME_PACKAGE_DEPENDS)
-- OpenCV Version: แนะนำให้ใช้ OpenCV 4.x ขึ้นไป
+    - Qt Version: โปรเจกต์นี้รองรับ Qt6 เป็นหลัก (ตามที่ระบุใน CPACK_DEBIAN_RUNTIME_PACKAGE_DEPENDS)
+    - OpenCV Version: แนะนำให้ใช้ OpenCV 4.x ขึ้นไป
