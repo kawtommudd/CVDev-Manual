@@ -572,10 +572,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#linux" class="md-nav__link">
+  <a href="#linux-ubuntu" class="md-nav__link">
     <span class="md-ellipsis">
       
-        การติดตั้งบนระบบ Linux
+        การติดตั้งบนระบบ Linux (Ubuntu)
       
     </span>
   </a>
@@ -583,10 +583,54 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
+  <a href="#1-prerequisites" class="md-nav__link">
     <span class="md-ellipsis">
       
-        สรุป
+        1. การเตรียมสภาพแวดล้อม (Prerequisites)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-clone-project" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. การดาวน์โหลดซอร์สโค้ด (Clone Project)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-build-process" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. ขั้นตอนการบิ้วโปรแกรม (Build Process)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-execution" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. การรันโปรแกรม (Execution)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-packaging-option" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. การสร้างแพ็กเกจติดตั้ง (Packaging - Option)
       
     </span>
   </a>
@@ -830,10 +874,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#linux" class="md-nav__link">
+  <a href="#linux-ubuntu" class="md-nav__link">
     <span class="md-ellipsis">
       
-        การติดตั้งบนระบบ Linux
+        การติดตั้งบนระบบ Linux (Ubuntu)
       
     </span>
   </a>
@@ -841,10 +885,54 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
+  <a href="#1-prerequisites" class="md-nav__link">
     <span class="md-ellipsis">
       
-        สรุป
+        1. การเตรียมสภาพแวดล้อม (Prerequisites)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-clone-project" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. การดาวน์โหลดซอร์สโค้ด (Clone Project)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-build-process" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. ขั้นตอนการบิ้วโปรแกรม (Build Process)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-execution" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. การรันโปรแกรม (Execution)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-packaging-option" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. การสร้างแพ็กเกจติดตั้ง (Packaging - Option)
       
     </span>
   </a>
@@ -906,18 +994,67 @@
 ควรตรวจสอบและลบ library search path ที่ไม่จำเป็นในส่วน Run Configuration<br />
 เพื่อป้องกันปัญหาในการโหลดไลบรารีขณะรันโปรแกรม</p>
 <hr />
-<h2 id="linux">การติดตั้งบนระบบ Linux</h2>
-<p>ระบบ Linux ที่ผ่านการทดสอบ ได้แก่
-- Ubuntu 24.04
-- Raspberry Pi OS (64-bit)</p>
-<p>ผู้ใช้งานต้องติดตั้งเครื่องมือสำหรับการพัฒนา C++<br />
-รวมถึง Qt และ OpenCV ผ่านระบบจัดการแพ็กเกจของระบบปฏิบัติการ<br />
-หรือคอมไพล์จากซอร์สโค้ดตามความเหมาะสม</p>
-<hr />
-<h2 id="_3">สรุป</h2>
-<p>การติดตั้งโปรแกรม CVDev จำเป็นต้องเตรียมสภาพแวดล้อมการพัฒนาให้เหมาะสมกับระบบปฏิบัติการที่ใช้งาน<br />
-โดยเฉพาะการติดตั้ง Qt และ OpenCV ให้ตรงกับเวอร์ชันที่รองรับ<br />
-เมื่อเตรียมเครื่องมือครบถ้วนแล้ว ผู้ใช้งานจะสามารถคอมไพล์และใช้งานโปรแกรม CVDev ได้อย่างมีประสิทธิภาพ</p>
+<h2 id="linux-ubuntu">การติดตั้งบนระบบ Linux (Ubuntu)</h2>
+<h2 id="1-prerequisites">1. การเตรียมสภาพแวดล้อม (Prerequisites)</h2>
+<pre><code>ก่อนเริ่มติดตั้ง ต้องติดตั้งเครื่องมือในการ Build และ Library พื้นฐานที่จำเป็นผ่าน Terminal:
+
+# อัปเดตรายการแพ็กเกจ
+sudo apt update &amp;&amp; sudo apt upgrade -y
+
+# ติดตั้งเครื่องมือ Build พื้นฐาน
+sudo apt install -y build-essential cmake git pkg-config
+
+# ติดตั้ง Qt6 Development Libraries
+sudo apt install -y qt6-base-dev qt6-base-dev-tools qt6-tools-dev \
+qt6-tools-dev-tools libqt6widgets6 libqt6gui6 libqt6core6
+
+# ติดตั้ง OpenCV Development Library
+sudo apt install -y libopencv-dev
+</code></pre>
+<h2 id="2-clone-project">2. การดาวน์โหลดซอร์สโค้ด (Clone Project)</h2>
+<pre><code>ทำการดึงซอร์สโค้ดหลักและโปรเจกต์ย่อย (Submodules) ที่จำเป็นทั้งหมด:
+
+# Clone โปรเจกต์จาก GitHub
+git clone https://github.com/pbunnun/SeeWeDev.git
+cd SeeWeDev
+
+# ตรวจสอบว่าอยู่บนสาขาหลัก (main)
+git checkout main
+
+# ดึงข้อมูล Submodules (NodeEditor, QtPropertyBrowserLibrary)
+git submodule update --init --recursive
+</code></pre>
+<h2 id="3-build-process">3. ขั้นตอนการบิ้วโปรแกรม (Build Process)</h2>
+<pre><code>เนื่องจากโปรเจกต์ไม่อนุญาตให้ Build ในโฟลเดอร์ซอร์สโค้ดโดยตรง (In-source build disabled) จึงต้องสร้างโฟลเดอร์ build แยกต่างหาก:
+
+# สร้างและเข้าโฟลเดอร์สำหรับ Build
+mkdir build
+cd build
+
+# กำหนดค่าโปรเจกต์ด้วย CMake
+cmake ..
+
+# เริ่มการคอมไพล์โปรแกรม
+make -j4
+</code></pre>
+<h2 id="4-execution">4. การรันโปรแกรม (Execution)</h2>
+<pre><code>เมื่อกระบวนการบิ้วเสร็จสิ้น 100% คุณจะพบไฟล์รันหลักอยู่ในโฟลเดอร์ย่อยภายใน build (โดยปกติจะอยู่ใน build/Main/ หรือตามโครงสร้างที่ CMake กำหนด):
+
+# ตัวอย่างการรันโปรแกรม
+./Main/CVDev
+</code></pre>
+<h2 id="5-packaging-option">5. การสร้างแพ็กเกจติดตั้ง (Packaging - Option)</h2>
+<pre><code>หากต้องการสร้างไฟล์ติดตั้ง .deb สำหรับนำไปใช้กับเครื่อง Ubuntu เครื่องอื่น สามารถใช้คำสั่ง CPack:
+
+cpack -G DEB
+</code></pre>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+</div>
+<ul>
+<li>Qt Version: โปรเจกต์นี้รองรับ Qt6 เป็นหลัก (ตามที่ระบุใน CPACK_DEBIAN_RUNTIME_PACKAGE_DEPENDS)</li>
+<li>OpenCV Version: แนะนำให้ใช้ OpenCV 4.x ขึ้นไป</li>
+</ul>
 
 
 
