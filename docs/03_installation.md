@@ -47,20 +47,61 @@
 
 ---
 
-## การติดตั้งบนระบบ Linux
+## การติดตั้งบนระบบ Linux (Ubuntu)
 
-ระบบ Linux ที่ผ่านการทดสอบ ได้แก่
-- Ubuntu 24.04
-- Raspberry Pi OS (64-bit)
+## 1. การเตรียมสภาพแวดล้อม (Prerequisites)
+    ก่อนเริ่มติดตั้ง ต้องติดตั้งเครื่องมือในการ Build และ Library พื้นฐานที่จำเป็นผ่าน Terminal:
 
-ผู้ใช้งานต้องติดตั้งเครื่องมือสำหรับการพัฒนา C++  
-รวมถึง Qt และ OpenCV ผ่านระบบจัดการแพ็กเกจของระบบปฏิบัติการ  
-หรือคอมไพล์จากซอร์สโค้ดตามความเหมาะสม
+    # อัปเดตรายการแพ็กเกจ
+    sudo apt update && sudo apt upgrade -y
 
----
+    # ติดตั้งเครื่องมือ Build พื้นฐาน
+    sudo apt install -y build-essential cmake git pkg-config
 
-## สรุป
+    # ติดตั้ง Qt6 Development Libraries
+    sudo apt install -y qt6-base-dev qt6-base-dev-tools qt6-tools-dev \
+    qt6-tools-dev-tools libqt6widgets6 libqt6gui6 libqt6core6
 
-การติดตั้งโปรแกรม CVDev จำเป็นต้องเตรียมสภาพแวดล้อมการพัฒนาให้เหมาะสมกับระบบปฏิบัติการที่ใช้งาน  
-โดยเฉพาะการติดตั้ง Qt และ OpenCV ให้ตรงกับเวอร์ชันที่รองรับ  
-เมื่อเตรียมเครื่องมือครบถ้วนแล้ว ผู้ใช้งานจะสามารถคอมไพล์และใช้งานโปรแกรม CVDev ได้อย่างมีประสิทธิภาพ
+    # ติดตั้ง OpenCV Development Library
+    sudo apt install -y libopencv-dev
+
+## 2. การดาวน์โหลดซอร์สโค้ด (Clone Project)
+    ทำการดึงซอร์สโค้ดหลักและโปรเจกต์ย่อย (Submodules) ที่จำเป็นทั้งหมด:
+
+    # Clone โปรเจกต์จาก GitHub
+    git clone https://github.com/pbunnun/SeeWeDev.git
+    cd SeeWeDev
+
+    # ตรวจสอบว่าอยู่บนสาขาหลัก (main)
+    git checkout main
+
+    # ดึงข้อมูล Submodules (NodeEditor, QtPropertyBrowserLibrary)
+    git submodule update --init --recursive
+
+## 3. ขั้นตอนการบิ้วโปรแกรม (Build Process)
+    เนื่องจากโปรเจกต์ไม่อนุญาตให้ Build ในโฟลเดอร์ซอร์สโค้ดโดยตรง (In-source build disabled) จึงต้องสร้างโฟลเดอร์ build แยกต่างหาก:
+
+    # สร้างและเข้าโฟลเดอร์สำหรับ Build
+    mkdir build
+    cd build
+
+    # กำหนดค่าโปรเจกต์ด้วย CMake
+    cmake ..
+
+    # เริ่มการคอมไพล์โปรแกรม
+    make -j4
+
+## 4. การรันโปรแกรม (Execution)
+    เมื่อกระบวนการบิ้วเสร็จสิ้น 100% คุณจะพบไฟล์รันหลักอยู่ในโฟลเดอร์ย่อยภายใน build (โดยปกติจะอยู่ใน build/Main/ หรือตามโครงสร้างที่ CMake กำหนด):
+
+    # ตัวอย่างการรันโปรแกรม
+    ./Main/CVDev
+
+## 5. การสร้างแพ็กเกจติดตั้ง (Packaging - Option)
+    หากต้องการสร้างไฟล์ติดตั้ง .deb สำหรับนำไปใช้กับเครื่อง Ubuntu เครื่องอื่น สามารถใช้คำสั่ง CPack:
+
+    cpack -G DEB
+
+!!! Note 
+- Qt Version: โปรเจกต์นี้รองรับ Qt6 เป็นหลัก (ตามที่ระบุใน CPACK_DEBIAN_RUNTIME_PACKAGE_DEPENDS)
+- OpenCV Version: แนะนำให้ใช้ OpenCV 4.x ขึ้นไป
