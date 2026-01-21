@@ -996,9 +996,8 @@
 <hr />
 <h2 id="linux-ubuntu">การติดตั้งบนระบบ Linux (Ubuntu)</h2>
 <h2 id="1-prerequisites">1. การเตรียมสภาพแวดล้อม (Prerequisites)</h2>
-<pre><code>ก่อนเริ่มติดตั้ง ต้องติดตั้งเครื่องมือในการ Build และ Library พื้นฐานที่จำเป็นผ่าน Terminal:
-
-# อัปเดตรายการแพ็กเกจ
+<p>ก่อนเริ่มติดตั้ง ต้องติดตั้งเครื่องมือในการ Build และ Library พื้นฐานที่จำเป็นผ่าน Terminal:</p>
+<pre><code># อัปเดตรายการแพ็กเกจ
 sudo apt update &amp;&amp; sudo apt upgrade -y
 
 # ติดตั้งเครื่องมือ Build พื้นฐาน
@@ -1012,9 +1011,8 @@ qt6-tools-dev-tools libqt6widgets6 libqt6gui6 libqt6core6
 sudo apt install -y libopencv-dev
 </code></pre>
 <h2 id="2-clone-project">2. การดาวน์โหลดซอร์สโค้ด (Clone Project)</h2>
-<pre><code>ทำการดึงซอร์สโค้ดหลักและโปรเจกต์ย่อย (Submodules) ที่จำเป็นทั้งหมด:
-
-# Clone โปรเจกต์จาก GitHub
+<p>ทำการดึงซอร์สโค้ดหลักและโปรเจกต์ย่อย (Submodules) ที่จำเป็นทั้งหมด:</p>
+<pre><code># Clone โปรเจกต์จาก GitHub
 git clone https://github.com/pbunnun/SeeWeDev.git
 cd SeeWeDev
 
@@ -1025,9 +1023,8 @@ git checkout main
 git submodule update --init --recursive
 </code></pre>
 <h2 id="3-build-process">3. ขั้นตอนการบิ้วโปรแกรม (Build Process)</h2>
-<pre><code>เนื่องจากโปรเจกต์ไม่อนุญาตให้ Build ในโฟลเดอร์ซอร์สโค้ดโดยตรง (In-source build disabled) จึงต้องสร้างโฟลเดอร์ build แยกต่างหาก:
-
-# สร้างและเข้าโฟลเดอร์สำหรับ Build
+<p>เนื่องจากโปรเจกต์ไม่อนุญาตให้ Build ในโฟลเดอร์ซอร์สโค้ดโดยตรง (In-source build disabled) จึงต้องสร้างโฟลเดอร์ build แยกต่างหาก:</p>
+<pre><code># สร้างและเข้าโฟลเดอร์สำหรับ Build
 mkdir build
 cd build
 
@@ -1038,23 +1035,21 @@ cmake ..
 make -j4
 </code></pre>
 <h2 id="4-execution">4. การรันโปรแกรม (Execution)</h2>
-<pre><code>เมื่อกระบวนการบิ้วเสร็จสิ้น 100% คุณจะพบไฟล์รันหลักอยู่ในโฟลเดอร์ย่อยภายใน build (โดยปกติจะอยู่ใน build/Main/ หรือตามโครงสร้างที่ CMake กำหนด):
-
-# ตัวอย่างการรันโปรแกรม
+<p>เมื่อกระบวนการบิ้วเสร็จสิ้น 100% คุณจะพบไฟล์รันหลักอยู่ในโฟลเดอร์ย่อยภายใน build (โดยปกติจะอยู่ใน build/Main/ หรือตามโครงสร้างที่ CMake กำหนด):</p>
+<pre><code># ตัวอย่างการรันโปรแกรม
 ./Main/CVDev
 </code></pre>
 <h2 id="5-packaging-option">5. การสร้างแพ็กเกจติดตั้ง (Packaging - Option)</h2>
-<pre><code>หากต้องการสร้างไฟล์ติดตั้ง .deb สำหรับนำไปใช้กับเครื่อง Ubuntu เครื่องอื่น สามารถใช้คำสั่ง CPack:
-
-cpack -G DEB
+<p>หากต้องการสร้างไฟล์ติดตั้ง .deb สำหรับนำไปใช้กับเครื่อง Ubuntu เครื่องอื่น สามารถใช้คำสั่ง CPack:</p>
+<pre><code>cpack -G DEB
 </code></pre>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-</div>
 <ul>
 <li>Qt Version: โปรเจกต์นี้รองรับ Qt6 เป็นหลัก (ตามที่ระบุใน CPACK_DEBIAN_RUNTIME_PACKAGE_DEPENDS)</li>
 <li>OpenCV Version: แนะนำให้ใช้ OpenCV 4.x ขึ้นไป</li>
 </ul>
+</div>
 
 
 
