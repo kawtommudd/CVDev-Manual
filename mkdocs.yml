@@ -35,8 +35,7 @@ nav:
   - การสร้าง Workflow: 05_workflow.md
   - โหนด: 06_nodes.md
   - ตัวอย่าง: 07_examples.md
-  - เทคนิค: 08_troubleshooting.md
-
+  
 plugins:
   - search
   #- with-pdf:
