@@ -58,6 +58,16 @@
     <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
+  
+
+
+  
+  
+
+<script id="__analytics">function __md_analytics(){function e(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],e("js",new Date),e("config",""),document.addEventListener("DOMContentLoaded",(function(){document.forms.search&&document.forms.search.query.addEventListener("blur",(function(){this.value&&e("event","search",{search_term:this.value})}));document$.subscribe((function(){var t=document.forms.feedback;if(void 0!==t)for(var a of t.querySelectorAll("[type=submit]"))a.addEventListener("click",(function(a){a.preventDefault();var n=document.location.pathname,d=this.getAttribute("data-md-value");e("event","feedback",{page:n,data:d}),t.firstElementChild.disabled=!0;var r=t.querySelector(".md-feedback__note [data-md-value='"+d+"']");r&&(r.hidden=!1)})),t.hidden=!1})),location$.subscribe((function(t){e("config","",{page_path:t.pathname})}))}));var t=document.createElement("script");t.async=!0,t.src="https://www.googletagmanager.com/gtag/js?id=",document.getElementById("__analytics").insertAdjacentElement("afterEnd",t)}</script>
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
 
     
     
@@ -9436,6 +9446,60 @@ Next / Step,<code>&gt;&gt;,</code></p>
 
 <details class="node">
 <summary>- <strong>CV Sum:</strong></summary>
+<p><p align="center">
+<img alt="Node Image" src="images/icons/CVSum.png" width="80" />
+</p></p>
+<p><strong>CV Sum</strong> คือโหนดสำหรับการ "บวก" ค่าสีของพิกเซลเข้าด้วยกัน (Addition) ระหว่างภาพ 2 ภาพ หรือ ภาพกับค่าคงที่ ผลลัพธ์ที่ได้มักจะทำให้ภาพ <strong>"สว่างขึ้น"</strong> หรือใช้ในการซ้อนภาพแบบเน้นความเข้มของแสง (เช่น การทำ Light Effects)</p>
+<h2 id="properties_77"><strong>ตารางการตั้งค่า (Properties)</strong></h2>
+<p><p align="center">
+<img alt="Image Node" src="images/workflow/CVSum.png" />
+</p></p>
+<div align="center">
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Property</th>
+<th style="text-align: left;">Default</th>
+<th style="text-align: left;">คำอธิบาย</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Node ID</strong></td>
+<td style="text-align: left;"><code>6</code></td>
+<td style="text-align: left;">เลขประจำตัวลำดับของโหนด</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Caption</strong></td>
+<td style="text-align: left;"><code>CV Sum</code></td>
+<td style="text-align: left;">ชื่อโหนดที่แสดงผลบน Workspace</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>(ไม่มีการตั้งค่าเพิ่มเติม)</strong></td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">โหนดนี้ทำงานแบบอัตโนมัติ โดยขึ้นอยู่กับ <strong>Input</strong> ที่ส่งเข้ามาเชื่อมต่อ 2 ช่องเท่านั้น</td>
+</tr>
+</tbody>
+</table>
+</div>
+<hr />
+<div class="admonition tip">
+<p class="admonition-title">เกร็ดความรู้: การบวกแบบอิ่มตัว (Saturated Addition)</p>
+<p>ในระบบ OpenCV การบวกสีจะไม่เหมือนคณิตศาสตร์ทั่วไป</p>
+<ul>
+<li><strong>คณิตศาสตร์ทั่วไป:</strong> $250 + 10 = 260$ (เกิน 255)</li>
+<li><strong>OpenCV (Saturated):</strong> $250 + 10 = 255$ (ตันที่ค่าสูงสุด ไม่วนกลับไปเริ่ม 0)</li>
+<li><strong>ผลลัพธ์:</strong> ทำให้ภาพดูสว่างจ้าขึ้น หรือขาวโพลนในส่วนที่สว่างอยู่แล้ว แทนที่จะเกิดภาพเพี้ยน (Noise)</li>
+</ul>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">ข้อควรระวังในการต่อสาย</p>
+<p>โหนดนี้ต้องการ <strong>Input 2 อย่าง</strong> เพื่อนำมาบวกกัน:</p>
+<ol>
+<li><strong>Image A + Image B:</strong> ภาพต้องมี <strong>"ขนาดเท่ากัน (Width/Height)"</strong> และ <strong>"ประเภทสีเหมือนกัน (Channel)"</strong> เท่านั้น ถึงจะบวกกันได้</li>
+<li><strong>Image + Scalar (สีเดียว):</strong> เป็นการบวกค่าความสว่างเข้าไปในทุกพิกเซล (ทำให้ภาพสว่างขึ้นทั้งภาพ)</li>
+</ol>
+</div>
 </details>
 
 
@@ -9445,6 +9509,8 @@ Next / Step,<code>&gt;&gt;,</code></p>
 
 
 
+
+  
 
 
 
