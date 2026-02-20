@@ -44,3 +44,8 @@ plugins:
 
 extra_css:
   - stylesheets/extra.css
+
+extra:
+  analytics:
+    provider: google
+    # property: G-XXXXXXXXXX  (รอรหัสจากพี่เลี้ยง)

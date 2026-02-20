@@ -49,55 +49,115 @@
 
 ## การติดตั้งบนระบบ Linux (Ubuntu)
 
-## 1. การเตรียมสภาพแวดล้อม (Prerequisites)
-ก่อนเริ่มติดตั้ง ต้องติดตั้งเครื่องมือในการ Build และ Library พื้นฐานที่จำเป็นผ่าน Terminal:
+## เครื่องมือที่จำเป็น
+- Ubuntu 24.04
+- Qt 6.4
+- opencv 4.7 ขึ้นไป
 
-    # อัปเดตรายการแพ็กเกจ
+## 🛠️ ขั้นตอนที่ 1: เตรียมเครื่องมือพื้นฐาน (Development Tools)
+
+เปิด Terminal ใน Ubuntu (WSL) แล้วรันคำสั่งเพื่อลงเครื่องมือคอมไพล์มาตรฐาน:
+
+* **อัปเดตระบบ:**
+    ```bash
     sudo apt update && sudo apt upgrade -y
+    ```
 
-    # ติดตั้งเครื่องมือ Build พื้นฐาน
+* **ติดตั้ง Build Tools:**
+    ```bash
     sudo apt install -y build-essential cmake git pkg-config
+    ```
 
-    # ติดตั้ง Qt6 Development Libraries
-    sudo apt install -y qt6-base-dev qt6-base-dev-tools qt6-tools-dev \
-    qt6-tools-dev-tools libqt6widgets6 libqt6gui6 libqt6core6
+* **ติดตั้ง Library พื้นฐาน:**
+    ```bash
+    sudo apt install -y libxkbcommon-x11-0 libxcb-cursor0
+    ```
 
-    # ติดตั้ง OpenCV Development Library
+---
+
+## 📦 ขั้นตอนที่ 2: ติดตั้ง Library หลัก (Dependencies)
+
+อ้างอิงจากไฟล์ `CMakeLists.txt` โปรแกรมนี้ต้องการ **Qt6** และ **OpenCV** ครับ:
+
+* **ติดตั้ง Qt6:**
+    ```bash
+    sudo apt install -y qt6-base-dev qt6-base-private-dev qt6-tools-dev qt6-tools-dev-tools libqt6opengl6-dev
+    ```
+
+* **ติดตั้ง OpenCV:**
+    ```bash
     sudo apt install -y libopencv-dev
+    ```
 
-## 2. การดาวน์โหลดซอร์สโค้ด (Clone Project)
-ทำการดึงซอร์สโค้ดหลักและโปรเจกต์ย่อย (Submodules) ที่จำเป็นทั้งหมด:
+* **ติดตั้ง QtMqtt (ต้องบิลด์เอง):**
+    ```bash
+    git clone [https://github.com/qt/qtmqtt.git](https://github.com/qt/qtmqtt.git) -b 6.4.2
+    cd qtmqtt && mkdir build && cd build
+    cmake .. -DQT_NO_PACKAGE_VERSION_CHECK=TRUE
+    make -j$(nproc) && sudo make install
+    ```
+    !!! tip "เวอร์ชันของ QtMqtt"
+        คุณสามารถเปลี่ยน `-b 6.4.2` ในคำสั่งด้านบนให้ตรงกับเวอร์ชันของ Qt ที่ติดตั้งอยู่ในเครื่องของคุณได้
 
-    # Clone โปรเจกต์จาก GitHub
-    git clone https://github.com/pbunnun/SeeWeDev.git
-    cd SeeWeDev
+---
 
-    # ตรวจสอบว่าอยู่บนสาขาหลัก (main)
-    git checkout main
+## 📂 ขั้นตอนที่ 3: การดึงโค้ดโปรเจกต์ (Cloning)
 
-    # ดึงข้อมูล Submodules (NodeEditor, QtPropertyBrowserLibrary)
-    git submodule update --init --recursive
+เพื่อให้ได้โค้ดครบทุกส่วนรวมถึง *NodeEditor* และ *Plugins*:
 
-## 3. ขั้นตอนการบิ้วโปรแกรม (Build Process)
-เนื่องจากโปรเจกต์ไม่อนุญาตให้ Build ในโฟลเดอร์ซอร์สโค้ดโดยตรง (In-source build disabled) จึงต้องสร้างโฟลเดอร์ build แยกต่างหาก:
+* **Clone แบบรวม Submodules:**
+    ```bash
+    git clone --recursive [https://github.com/pbunnun/SeeWeDev.git](https://github.com/pbunnun/SeeWeDev.git)
+    ```
 
-    # สร้างและเข้าโฟลเดอร์สำหรับ Build
-    mkdir build
-    cd build
+!!! warning "การยืนยันตัวตนบน GitHub"
+    หาก GitHub ถาม Password ระหว่างการ Clone ให้ใช้ **Personal Access Token (PAT)** ที่คุณสร้างไว้ในการยืนยันตัวตนแทนรหัสผ่านปกติ
 
-    # กำหนดค่าโปรเจกต์ด้วย CMake
-    cmake ..
+---
 
-    # เริ่มการคอมไพล์โปรแกรม
-    make -j4
+## 🔧 ขั้นตอนที่ 4: การปรับจูนโค้ด (Compatibility Patch)
 
-## 4. การรันโปรแกรม (Execution)
-เมื่อกระบวนการบิ้วเสร็จสิ้น 100% คุณจะพบไฟล์รันหลักอยู่ในโฟลเดอร์ย่อยภายใน build (โดยปกติจะอยู่ใน build/Main/ หรือตามโครงสร้างที่ CMake กำหนด):
+เนื่องจาก OpenCV ใน Ubuntu 24.04 เป็นรุ่น 4.6 แต่โค้ดบางส่วนเรียกหาฟีเจอร์ของ 4.7+ ต้องรันคำสั่งซ่อมแซมดังนี้:
 
-    # ตัวอย่างการรันโปรแกรม
-    ./Main/CVDev
+* **ซ่อม Path ของ ArUco:**
+    ```bash
+    find . -type f \( -name "*.cpp" -o -name "*.hpp" \) -exec sed -i 's/opencv2\/objdetect\/aruco/opencv2\/aruco/g' {} +
+    ```
 
-## 5. การสร้างแพ็กเกจติดตั้ง (Packaging - Option)
+* **ซ่อม CharucoDetector (วิธีแก้ถาวรด้วย `#if`):** ใช้วิธีครอบโค้ดด้วยคำสั่ง Preprocessor ของ C++:
+    ```cpp
+    #if CV_VERSION_GREATER_THAN 
+    ```
+
+---
+
+## 🚀 ขั้นตอนที่ 5: การบิลด์และรัน (Build & Run)
+
+แนะนำให้บิลด์บน **Drive D** เพื่อประหยัดพื้นที่และแยกไฟล์ระบบออกจากไฟล์งาน:
+
+1. **สร้างโฟลเดอร์บิลด์:**
+    ```bash
+    mkdir -p /mnt/d/SeeWeDev/build && cd /mnt/d/SeeWeDev/build
+    ```
+
+2. **ตั้งค่า CMake:**
+    ```bash
+    cmake /home/ชื่อuser/SeeWeDev
+    ```
+    !!! note "แก้ไขชื่อผู้ใช้"
+        อย่าลืมเปลี่ยนคำว่า `ชื่อuser` ใน path ให้เป็นชื่อ Username จริงของคุณบน Ubuntu (WSL)
+
+3. **คอมไพล์:**
+    ```bash
+    make -j$(nproc)
+    ```
+
+4. **เปิดโปรแกรม:**
+    ```bash
+    ./Main/SeeWeDev
+    ```
+
+## การสร้างแพ็กเกจติดตั้ง (Packaging - Option)
 หากต้องการสร้างไฟล์ติดตั้ง .deb สำหรับนำไปใช้กับเครื่อง Ubuntu เครื่องอื่น สามารถใช้คำสั่ง CPack:
 
     cpack -G DEB
