@@ -1044,7 +1044,7 @@
 </li>
 <li>
 <p><strong>ติดตั้ง QtMqtt (ต้องบิลด์เอง):</strong>
-    <div class="highlight"><pre><span></span><code>git<span class="w"> </span>clone<span class="w"> </span><span class="o">[</span>https://github.com/qt/qtmqtt.git<span class="o">](</span>https://github.com/qt/qtmqtt.git<span class="o">)</span><span class="w"> </span>-b<span class="w"> </span><span class="m">6</span>.4.2
+    <div class="highlight"><pre><span></span><code>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/qt/qtmqtt.git<span class="w"> </span>-b<span class="w"> </span><span class="m">6</span>.4.2
 <span class="nb">cd</span><span class="w"> </span>qtmqtt<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>mkdir<span class="w"> </span>build<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>build
 cmake<span class="w"> </span>..<span class="w"> </span>-DQT_NO_PACKAGE_VERSION_CHECK<span class="o">=</span>TRUE
 make<span class="w"> </span>-j<span class="k">$(</span>nproc<span class="k">)</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>sudo<span class="w"> </span>make<span class="w"> </span>install
@@ -1058,7 +1058,9 @@ make<span class="w"> </span>-j<span class="k">$(</span>nproc<span class="k">)</s
 <p>เพื่อให้ได้โค้ดครบทุกส่วนรวมถึง <em>NodeEditor</em> และ <em>Plugins</em>:</p>
 <ul>
 <li><strong>Clone แบบรวม Submodules:</strong>
-    <div class="highlight"><pre><span></span><code>git<span class="w"> </span>clone<span class="w"> </span>--recursive<span class="w"> </span><span class="o">[</span>https://github.com/pbunnun/SeeWeDev.git<span class="o">](</span>https://github.com/pbunnun/SeeWeDev.git<span class="o">)</span>
+    <div class="highlight"><pre><span></span><code><span class="nb">cd</span>
+git<span class="w"> </span>clone<span class="w"> </span>--recursive<span class="w"> </span>https://github.com/pbunnun/SeeWeDev.git
+<span class="nb">cd</span><span class="w"> </span>SeeWeDev
 </code></pre></div></li>
 </ul>
 <div class="admonition warning">
@@ -1086,15 +1088,14 @@ make<span class="w"> </span>-j<span class="k">$(</span>nproc<span class="k">)</s
 <ol>
 <li>
 <p><strong>สร้างโฟลเดอร์บิลด์:</strong>
-    <div class="highlight"><pre><span></span><code>mkdir<span class="w"> </span>-p<span class="w"> </span>/mnt/d/SeeWeDev/build<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>/mnt/d/SeeWeDev/build
+    <div class="highlight"><pre><span></span><code>mkdir<span class="w"> </span>build
+<span class="nb">cd</span><span class="w"> </span>build
 </code></pre></div></p>
 </li>
 <li>
 <p><strong>ตั้งค่า CMake:</strong>
-    <div class="highlight"><pre><span></span><code>cmake<span class="w"> </span>/home/ชื่อuser/SeeWeDev
-</code></pre></div>
-    !!! note "แก้ไขชื่อผู้ใช้"
-        อย่าลืมเปลี่ยนคำว่า <code>ชื่อuser</code> ใน path ให้เป็นชื่อ Username จริงของคุณบน Ubuntu (WSL)</p>
+    <div class="highlight"><pre><span></span><code>cmake<span class="w"> </span>..
+</code></pre></div></p>
 </li>
 <li>
 <p><strong>คอมไพล์:</strong>
@@ -1103,7 +1104,8 @@ make<span class="w"> </span>-j<span class="k">$(</span>nproc<span class="k">)</s
 </li>
 <li>
 <p><strong>เปิดโปรแกรม:</strong>
-    <div class="highlight"><pre><span></span><code>./Main/SeeWeDev
+    <div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>CVDev
+./CVDev
 </code></pre></div></p>
 </li>
 </ol>
@@ -1114,10 +1116,12 @@ make<span class="w"> </span>-j<span class="k">$(</span>nproc<span class="k">)</s
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <ul>
-<li>Qt Version: โปรเจกต์นี้รองรับ Qt6 เป็นหลัก (ตามที่ระบุใน CPACK_DEBIAN_RUNTIME_PACKAGE_DEPENDS)</li>
-<li>OpenCV Version: แนะนำให้ใช้ OpenCV 4.x ขึ้นไป</li>
+<li>Qt Version: โปรเจกต์นี้รองรับ Qt6.4 เป็นหลัก (ตามที่ระบุใน CPACK_DEBIAN_RUNTIME_PACKAGE_DEPENDS)</li>
+<li>OpenCV Version: แนะนำให้ใช้ OpenCV 4.7 ขึ้นไป</li>
 </ul>
 </div>
+<p>!!! ไม่ต้องตกใจ
+    ถ้าโหนด ROI และ CVCamaracaribase ขึ้น error</p>
 
 
 
