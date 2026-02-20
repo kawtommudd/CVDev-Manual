@@ -91,7 +91,7 @@
 
 * **ติดตั้ง QtMqtt (ต้องบิลด์เอง):**
     ```bash
-    git clone [https://github.com/qt/qtmqtt.git](https://github.com/qt/qtmqtt.git) -b 6.4.2
+    git clone https://github.com/qt/qtmqtt.git -b 6.4.2
     cd qtmqtt && mkdir build && cd build
     cmake .. -DQT_NO_PACKAGE_VERSION_CHECK=TRUE
     make -j$(nproc) && sudo make install
@@ -107,7 +107,9 @@
 
 * **Clone แบบรวม Submodules:**
     ```bash
-    git clone --recursive [https://github.com/pbunnun/SeeWeDev.git](https://github.com/pbunnun/SeeWeDev.git)
+    cd
+    git clone --recursive https://github.com/pbunnun/SeeWeDev.git
+    cd SeeWeDev
     ```
 
 !!! warning "การยืนยันตัวตนบน GitHub"
@@ -137,15 +139,14 @@
 
 1. **สร้างโฟลเดอร์บิลด์:**
     ```bash
-    mkdir -p /mnt/d/SeeWeDev/build && cd /mnt/d/SeeWeDev/build
+    mkdir build
+    cd build
     ```
 
 2. **ตั้งค่า CMake:**
     ```bash
-    cmake /home/ชื่อuser/SeeWeDev
+    cmake ..
     ```
-    !!! note "แก้ไขชื่อผู้ใช้"
-        อย่าลืมเปลี่ยนคำว่า `ชื่อuser` ใน path ให้เป็นชื่อ Username จริงของคุณบน Ubuntu (WSL)
 
 3. **คอมไพล์:**
     ```bash
@@ -154,7 +155,8 @@
 
 4. **เปิดโปรแกรม:**
     ```bash
-    ./Main/SeeWeDev
+    cd CVDev
+    ./CVDev
     ```
 
 ## การสร้างแพ็กเกจติดตั้ง (Packaging - Option)
@@ -163,5 +165,8 @@
     cpack -G DEB
 
 !!! Note 
-    - Qt Version: โปรเจกต์นี้รองรับ Qt6 เป็นหลัก (ตามที่ระบุใน CPACK_DEBIAN_RUNTIME_PACKAGE_DEPENDS)
-    - OpenCV Version: แนะนำให้ใช้ OpenCV 4.x ขึ้นไป
+    - Qt Version: โปรเจกต์นี้รองรับ Qt6.4 เป็นหลัก (ตามที่ระบุใน CPACK_DEBIAN_RUNTIME_PACKAGE_DEPENDS)
+    - OpenCV Version: แนะนำให้ใช้ OpenCV 4.7 ขึ้นไป
+
+!!! ไม่ต้องตกใจ
+    ถ้าโหนด ROI และ CVCamaracaribase ขึ้น error
